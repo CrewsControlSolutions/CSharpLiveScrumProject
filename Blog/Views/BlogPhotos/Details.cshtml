@@ -1,0 +1,55 @@
+﻿@model TheatreCMS3.Areas.Blog.Models.BlogPhoto
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="BlogPhoto-Details--CenterText">Blog Photo Details</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @*@Html.DisplayNameFor(model => model.Title)*@
+        </dt>
+
+        <dd class="BlogPhoto-Details--CenterText">
+            <h6>
+                @Html.DisplayFor(model => model.Title)
+            </h6>
+        </dd>
+
+        <dt>
+            @*@Html.DisplayNameFor(model => model.Photo)*@
+        </dt>
+
+        @*show the image specific to this entry in the database*@
+        <dd>
+            <img class="BlogPhoto-Details--ImageFit" src="@Url.Action("ViewImage", "BlogPhotos", new { id = (Model.BlogPhotoId) } )" />
+        </dd>
+    </dl>
+</div>
+
+<div>
+    <button type="button" class="btn btn-secondary fa-arrow-left">
+        @Html.ActionLink("Back to List", "Index", null, new
+        {
+            style = "color: var(--light-color); " +
+            "text-decoration: none;"
+        })
+    </button>
+
+    <a href="@Url.Action("Edit", "BlogPhotos", new { id = Model.BlogPhotoId })">
+        <button class="btn btn-secondary fa-edit">
+            Edit
+        </button>
+    </a>
+
+    @*Uncomment block below if Delete button is desired*@
+    @*<a href="@Url.Action("Delete", "BlogPhotos", new { id = Model.BlogPhotoId })">
+        <button class="btn btn-danger fa-trash BlogPhoto-Details--ButtonDelete">
+            Delete
+        </button>
+    </a>*@
+</div>

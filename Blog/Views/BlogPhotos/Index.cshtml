@@ -1,0 +1,43 @@
+﻿@model IEnumerable<TheatreCMS3.Areas.Blog.Models.BlogPhoto>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+<div class="card-columns">
+    @foreach (var item in Model)
+    {
+        <div class="card BlogPhoto-Index--Card">
+            <div class="card-body">
+                <div class="BlogPhoto-Index--Photo">
+                    <img class="card-img-top" src="@Url.Action("ViewImage", "BlogPhotos", new { id = item.BlogPhotoId } )" />
+                    <div class="BlogPhoto-Index--PhotoOverlay">
+                        <div class="card-img-overlay card-inverse">
+                            <h4>
+                                @Html.DisplayFor(modelItem => item.Title)
+                            </h4>
+                            <div class="BlogPhoto-Index--Badge">
+                                <span class="badge badge-pill badge-light">
+                                    @Html.ActionLink("Details", "Details", new { id = item.BlogPhotoId })
+                                </span>
+                                <span class="badge badge-pill badge-warning">
+                                    @Html.ActionLink("Edit", "Edit", new { id = item.BlogPhotoId })
+                                </span>
+                                <span class="badge badge-pill badge-danger">
+                                    @Html.ActionLink("Delete", "Delete", new { id = item.BlogPhotoId })
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
