@@ -13,5 +13,8 @@ A new blog post can be created by selecting Create New from the <a href="https:/
 CSS styling for the Blog Photo section is consistent with the color and font schema of the overall web app.<br><br>
 
 <h2>Back End</h2>
-A model contains the properties of a blog post and is linked, via Entity Framework, to a code-first database in MS SQL Server.  Entity Framework is also used to scaffold the CRUD pages for creating the Create, Details, Edit, and Delete pages.
+A model contains the properties of a blog post.  Entity Framework is used to create a code-first database which links to the model.  The database is held in MS SQL Server.  Entity Framework is also used to scaffold the CRUD pages (in this case, the Create, Details, Edit, and Delete pages).
 
+One of the more complex aspects is storing and retrieving blog photos. Storing photos is handled from the the Controller's Create action method.  Within this method, a separate ```PhotoConvert``` method (also within the Controller) is called and passed a photo object of type HttpPostedFileBase.  The ```PhotoConvert``` method contains a BinaryReader object which is used to convert the photo into a byte array for proper storage in the database.  
+
+The ```ViewImage``` method, contained within the Controller, receives a photo's byte array from the database, buffers the photo, and returns a ```File``` object containing the buffered photo. The ```ViewImage``` method is called from numerous Views pages, such as at this line in the Index page.
